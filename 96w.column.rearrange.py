@@ -1,27 +1,22 @@
-
-# coding: utf-8
-
-# In[1]:
-
+#!C:\Users\harley\AppData\Local\Continuum\anaconda3\python.exe
 
 import pandas as pd
-
-
-# In[49]:
-
+from IPython.display import display
 
 # Break down file name 'C:/Users/harley/Documents/Book2.csv'
-directory = "C:/Users/harley/Documents/"
-file_name = "Book2.csv"
-df = pd.read_csv(directory+file_name)
+# directory = "C:/Users/harley/Documents/"
+directory = "S:/NelsonShared/Harley/NelsonLab_EXPERIMENTS/Exp722/"
+# file_name = "Book2.csv"
+file_name = "PlyC.reduced.conc.w.S.uberis.CWE.repeat.column.export.txt"
+
+# skip header, footer rows. Encoding is important for number interpretation; http://bit.ly/2KsWMl4
+df = pd.read_table(directory+file_name, skiprows=17, skipfooter=2, header=0, engine='python', encoding='utf-16')
+
+# last col contains NaN data because line ends in '/t/n' and forms last col when /t del
 # first row contains column headers
-print (df.head)
+display (df)
 
-
-# In[50]:
-
-
-# export in A1, B1, C1 .. A2, B2, C2 format
+# export in A1, B1, C1 .. A2, B2, C2 format; drop temp col
 # change in excel using cells
 # ="'"&A1&"', '"&B1&"', '"&C1&"', '"&D1&"', '"&E1&"', '"&F1&"', '"&G1&"', '"&H1&"', "
 dfMod = df[['Time', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1', 
@@ -38,11 +33,7 @@ dfMod = df[['Time', 'A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1', 'H1',
 'A12', 'B12', 'C12', 'D12', 'E12', 'F12', 'G12', 'H12' 
 ]]
 # view re-arrangement
-print (dfMod.head)
-
-
-# In[56]:
-
+display (dfMod)
 
 # export re-arranged columns in csv format
 file_nameRe = file_name[0:-4]+"_rearranged.csv"

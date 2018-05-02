@@ -2,17 +2,21 @@
 Python script to re-arrange column format on 96 well plate
 
 # Impetus
-96 well plate-reading spectrophotometers like Molecular Devices readers export data in columnar format. Data further striated by time series or containing empty columns can be difficult to format for downstream analysis in programs like like Prism, etc.
+96 well plate-reading spectrophotometers like Molecular Devices (MD) readers export data in row format, A1, A2, A3.... Samples in columnar format must be manually manipulated by moving columns together, A1, B1, C1... Data further striated by time series or containing empty columns can be difficult to format for downstream analysis in programs like like Prism, etc.
 
-Column rearrangment can be accomplished manually with spreadsheet programs like Excel, Google Spreadsheets etc. but is cumbersome and prone to errors.
+Column rearrangment can be accomplished manually with spreadsheet programs like Excel, Google Spreadsheets etc. but this a manual process (select column B1, drag to position beside column A1) and prone to errors.
 
 This Python scripts uses Pandas to import data as a dataframe. Column headers kept in row 1 are used as column names e.g. "A1", "A2".."H12".
 
 Once named, columns can be exported in any format, A1, B1, C1, D1..or A1, A2, A3..or A1, 
 
 # Pre-Processing
-Row 1 should contain column names. Xxtraneous information above row 1 should be removed.
-Column export names and formats need to be entered manually.
+Pandas can skip over header and footer rows and Molecular Devices (MD) export files do not need pre-processing. However, MD export should be done with "columnar format". Pandas processeds header names.
+
+Files originating elsewhere can be alternatively processed.
+
+Row 1 should contain column names. Extraneous information above row 1 should be removed.
+Column export names and formats need to be entered manually in Python program.
 I use Excel to rename and enter column-name delimiters. 
 
 ```
